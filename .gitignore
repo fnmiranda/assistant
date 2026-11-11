@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.coverage
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Configuracao local (copie a partir do exemplo)
+config/config.yaml
+
+# Documentos pessoais e indice vetorial local
+data/documents/*
+!data/documents/.gitkeep
+data/chroma/
+
+# Saidas geradas localmente (podem conter texto ou audio de documentos pessoais)
+/capitulo-traduzido.md
+/tts_*.mp3

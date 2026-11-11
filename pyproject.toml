@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "local-assistant"
+version = "0.3.0"
+description = "Assistente local com Ollama, RAG e ferramentas Linux seguras"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27,<1",
+    "PyYAML>=6.0,<7",
+    "chromadb>=1.5,<1.6",
+    "pypdf>=6.14,<7",
+    "duckduckgo-search>=8.1,<9",
+]
+
+[project.scripts]
+local-assistant = "local_assistant.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["src"]
+testpaths = ["tests"]

@@ -1,12 +1,11 @@
-# Assistente local — Fases 1 a 4
+# Assistente local — Fases 1, 2 e 3
 
 Assistente conversacional executado integralmente no Linux. Ele usa um LLM local
 via Ollama, mantem memoria curta, responde com contexto de documentos locais e
 executa um conjunto restrito de ferramentas no Linux com confirmacao humana.
 
-O projeto nao usa APIs pagas nem envia documentos para a nuvem. A interface web
-escura funciona localmente, no navegador, e reutiliza o mesmo chat, RAG e as
-mesmas regras de autorizacao das ferramentas.
+O projeto nao usa APIs pagas nem envia documentos para a nuvem. A conversa
+acontece pelo terminal.
 
 ## Recursos e espaco em disco
 
@@ -126,26 +125,7 @@ Comandos durante a conversa:
 - `Ctrl+C`: interrompe uma geracao sem salvar a troca;
 - `Ctrl+D`: encerra de forma segura.
 
-### 4. Interface web
-
-Inicie a interface com a mesma configuracao do terminal:
-
-```bash
-local-assistant web
-```
-
-Abra `http://127.0.0.1:8765` no navegador. Para escolher outra porta, use
-`local-assistant web --port 9000`. O servidor escuta apenas em `127.0.0.1`;
-`Ctrl+C` o encerra. As mensagens aparecem progressivamente quando as ferramentas
-estao desativadas. Com ferramentas ativas, a resposta final aparece depois do
-ciclo de chamadas. Operacoes que exigem confirmacao mostram o resumo, o risco e
-os argumentos completos antes dos botoes **Recusar** e **Autorizar**.
-
-O historico fica apenas na memoria do processo e pode ser apagado pelo botao
-**Nova conversa**. Reiniciar o servidor tambem apaga o historico. A interface
-nao envia arquivos diretamente; use `local-assistant ingest` para indexa-los.
-
-### 5. Traduzir um capítulo de PDF
+### 4. Traduzir um capítulo de PDF
 
 A tradução é sequencial e não usa RAG nem embeddings. Informe as páginas físicas
 do PDF que contêm o capítulo; elas podem diferir da numeração impressa no livro:
@@ -366,8 +346,6 @@ data/
   chroma/                   indice persistente, ignorado pelo Git
 src/local_assistant/
   cli.py                    chat, ingestao e status
-  web.py                    servidor HTTP local e API do chat
-  web_static/               interface web escura e responsiva
   agent.py                  loop modelo-ferramenta e prompt de seguranca
   config.py                 leitura e validacao do YAML
   conversation.py           memoria curta
